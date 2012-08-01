@@ -26,7 +26,7 @@ class DataSet(list):
             namespace = namespace_v1_1
             total_result = xml_tree.find('{}totalResults'.format(namespace))
 
-        self.totalResults = int(total_result.text)
+        #self.totalResults = int(total_result.text)
         self.startIndex = int(xml_tree.find('{}startIndex'.format(namespace)).text)
         self.itemsPerPage = int(xml_tree.find('{}itemsPerPage'.format(namespace)).text)
 
