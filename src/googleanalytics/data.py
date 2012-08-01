@@ -27,8 +27,8 @@ class DataSet(list):
             total_result = xml_tree.find('{}totalResults'.format(namespace))
 
         #self.totalResults = int(total_result.text)
-        self.startIndex = int(xml_tree.find('{}startIndex'.format(namespace)).text)
-        self.itemsPerPage = int(xml_tree.find('{}itemsPerPage'.format(namespace)).text)
+        #self.startIndex = int(xml_tree.find('{}startIndex'.format(namespace)).text)
+        #self.itemsPerPage = int(xml_tree.find('{}itemsPerPage'.format(namespace)).text)
 
         endDate = xml_tree.find('{http://schemas.google.com/analytics/2009}endDate').text
         self.endDate = datetime.date.fromtimestamp(time.mktime(time.strptime(endDate, '%Y-%m-%d')))
