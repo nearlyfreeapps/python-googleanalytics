@@ -15,9 +15,9 @@ class DataSet(list):
         xml_tree = ElementTree.fromstring(self.raw_xml)
         self.id = xml_tree.find('{http://www.w3.org/2005/Atom}id').text
         self.title = xml_tree.find('{http://www.w3.org/2005/Atom}title').text
-        self.totalResults = int(xml_tree.find('{http://a9.com/-/spec/opensearchrss/1.0/}totalResults').text)
-        self.startIndex = int(xml_tree.find('{http://a9.com/-/spec/opensearchrss/1.0/}startIndex').text)
-        self.itemsPerPage = int(xml_tree.find('{http://a9.com/-/spec/opensearchrss/1.0/}itemsPerPage').text)
+        self.totalResults = int(xml_tree.find('{http://a9.com/-/spec/opensearch/1.1/}totalResults').text)
+        self.startIndex = int(xml_tree.find('{http://a9.com/-/spec/opensearch/1.1/}startIndex').text)
+        self.itemsPerPage = int(xml_tree.find('{http://a9.com/-/spec/opensearch/1.1/}itemsPerPage').text)
 
         endDate = xml_tree.find('{http://schemas.google.com/analytics/2009}endDate').text
         self.endDate = datetime.date.fromtimestamp(time.mktime(time.strptime(endDate, '%Y-%m-%d')))
@@ -55,7 +55,7 @@ class DataSet(list):
 
 class DataPoint(object):
     """DataPoint takes an `entry` from the xml response and creates `Dimension` and `Metric`
-    objects in the order they are returned. It has the the dimensions and metrics available 
+    objects in the order they are returned. It has the the dimensions and metrics available
     directly as object attributes as well as stored in the `metrics` and `dimensions` array attributes.
     """
     def __init__(self, entry):
@@ -87,4 +87,3 @@ class Metric(object):
             setattr(self, k, unicode(v.replace('ga:', '')))
         if self.type in data_converters:
             self.value = data_converters[self.type](self.value)
-
