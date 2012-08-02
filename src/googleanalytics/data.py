@@ -22,7 +22,7 @@ class DataSet(list):
         namespace = namespace_v1
         total_result = xml_tree.find('{}totalResults'.format(namespace))
 
-        if not total_result:
+        if total_result is not None:
             namespace = namespace_v1_1
             total_result = xml_tree.find('{}totalResults'.format(namespace))
 
